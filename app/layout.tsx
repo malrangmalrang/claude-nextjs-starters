@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { SITE_CONFIG } from "@/lib/constants";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,11 +18,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Next.js Starter Kit",
-    template: "%s | Next.js Starter Kit",
+    default: SITE_CONFIG.name,
+    template: `%s | ${SITE_CONFIG.name}`,
   },
-  description:
-    "빠른 웹 개발을 위한 Next.js 16 + TypeScript + Tailwind CSS v4 스타터킷",
+  description: SITE_CONFIG.description,
   keywords: [
     "Next.js",
     "React",
@@ -36,21 +36,19 @@ export const metadata: Metadata = {
       name: "Your Name",
     },
   ],
-  creator: "Next.js Starter Kit",
+  creator: SITE_CONFIG.name,
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    url: "https://your-domain.com",
-    title: "Next.js Starter Kit",
-    description:
-      "빠른 웹 개발을 위한 Next.js 16 + TypeScript + Tailwind CSS v4 스타터킷",
-    siteName: "Next.js Starter Kit",
+    url: SITE_CONFIG.url,
+    title: SITE_CONFIG.name,
+    description: SITE_CONFIG.description,
+    siteName: SITE_CONFIG.name,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Next.js Starter Kit",
-    description:
-      "빠른 웹 개발을 위한 Next.js 16 + TypeScript + Tailwind CSS v4 스타터킷",
+    title: SITE_CONFIG.name,
+    description: SITE_CONFIG.description,
   },
 };
 

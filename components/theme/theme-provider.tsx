@@ -19,6 +19,11 @@ const ThemeProviderContext = createContext<ThemeProviderState | undefined>(
   undefined
 )
 
+// 유효한 테마 값인지 확인하는 타입 가드
+const isValidTheme = (value: string | null): value is Theme => {
+  return value !== null && ['light', 'dark', 'system'].includes(value)
+}
+
 /**
  * 다크모드 Context Provider
  * - localStorage에 사용자 테마 선택 저장
@@ -31,10 +36,17 @@ export function ThemeProvider({
   storageKey = 'theme',
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (typeof window !== 'undefined' ? (localStorage.getItem(storageKey) as Theme) : defaultTheme) || defaultTheme
-  )
+  const [theme, setTheme] = useState<Theme>(defaultTheme)
 
+  // 마운트 시 localStorage에서 테마 읽기
+  useEffect(() => {
+    const stored = localStorage.getItem(storageKey)
+    if (isValidTheme(stored)) {
+      setTheme(stored)
+    }
+  }, [storageKey])
+
+  // 테마 변경 시 html 클래스 업데이트
   useEffect(() => {
     const root = window.document.documentElement
 

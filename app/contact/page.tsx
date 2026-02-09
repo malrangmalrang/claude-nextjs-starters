@@ -1,6 +1,5 @@
 'use client'
 
-import { Metadata } from 'next'
 import { useState } from 'react'
 import { Mail, MessageSquare, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -13,6 +12,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+
+// 성공 메시지 표시 시간 (밀리초)
+const SUCCESS_MESSAGE_DURATION = 3000
 
 /**
  * Contact 페이지
@@ -35,15 +37,19 @@ export default function ContactPage() {
     // 실제 API 호출 대신 시뮬레이션
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
-    console.log('Form submitted:', formData)
+    // TODO: 프로덕션 환경에서는 실제 API 엔드포인트로 데이터 전송
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Form submitted:', formData)
+    }
+
     setIsSubmitted(true)
     setIsSubmitting(false)
 
     // 폼 초기화
     setFormData({ name: '', email: '', message: '' })
 
-    // 3초 후 성공 메시지 제거
-    setTimeout(() => setIsSubmitted(false), 3000)
+    // 성공 메시지 제거
+    setTimeout(() => setIsSubmitted(false), SUCCESS_MESSAGE_DURATION)
   }
 
   const handleChange = (
