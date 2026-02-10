@@ -13,6 +13,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
+import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 
 /**
@@ -59,6 +60,16 @@ export function MobileNav() {
               </Link>
             )
           })}
+
+          {/* 구분선 */}
+          <Separator className="my-2" />
+
+          {/* 로그인 버튼 */}
+          <Button asChild className="w-full">
+            <Link href="/login" onClick={() => setOpen(false)}>
+              로그인
+            </Link>
+          </Button>
         </nav>
       </SheetContent>
     </Sheet>

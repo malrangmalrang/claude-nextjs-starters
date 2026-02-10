@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Navigation } from '@/components/layout/navigation'
 import { MobileNav } from '@/components/layout/mobile-nav'
 import { ThemeToggle } from '@/components/theme/theme-toggle'
+import { Button } from '@/components/ui/button'
 import { SITE_CONFIG } from '@/lib/constants'
 
 /**
@@ -26,8 +27,11 @@ export function Header() {
           {/* 데스크톱 네비게이션 */}
           <Navigation />
 
-          {/* 테마 토글 */}
-          <div className="flex items-center">
+          {/* 로그인 버튼 및 테마 토글 */}
+          <div className="flex items-center gap-3">
+            <Button asChild variant="ghost" size="sm" className="hidden md:inline-flex">
+              <Link href="/login">로그인</Link>
+            </Button>
             <ThemeToggle />
           </div>
         </div>
